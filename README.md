@@ -71,9 +71,10 @@ contain the repeating patterns 1,2,3,4; 2,3,4,1; 3,4,1,2; and 4,1,2,3
 
 # Observations
 
-1. It seems that if n is prime and n mod 4 == 3, then all algebraic numbers
+1. ~~It seems that if n is prime and n mod 4 == 3, then all algebraic numbers
 in C(n) have the same repeating sequences in their continued fraction. That
-is the cardinality of P(n) is 1.
+is the cardinality of P(n) is 1.~~ n = 79 is the smallest contridiction to
+this conjecture. `len(cont.Partition(79))` is 3
 
 2. It seems that if n is prime and n mod 4 == 1
 (the equivalent of n is both prime and can be written as the sum of two squares)
