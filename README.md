@@ -124,6 +124,16 @@ if r is a perfect square.
 [(31, -1, 5), (31, -1, 6), (31, -4, 3), (31, -4, 5), (31, -5, 1), (31, -5, 6), (31, -5, 2), (31, -5, 3)]
 ```
 
+## cont.AllWithReduced(r)
+
+Works like cont.AllWith except that it reduces the returned algebraic
+numbers to lowest terms. Unlike cont.AllWith, the returned algebraic
+numbers may not be in normalized form.
+
+```
+>>> cont.AllWithReduced(24)
+[(6, -1, 2), (24, -2, 5), (24, -3, 3), (24, -3, 5), (24, -4, 1), (6, -2, 4)]```
+
 ## cont.Characteristic(r, a, b)
 
 Returns the characteristic of the given algebraic number. Returns 0 if
@@ -180,3 +190,24 @@ square, returns the empty list.
 (41, -6, 1) ([], [2, 2, 12])
 ```
 
+## cont.PartitionReduced(r)
+
+Works like cont.Partition except that it reduces the returned algebraic
+numbers to lowest terms. Unlike cont.Partition, the returned
+algebraic numbers may not be in normalized form.
+
+```
+>>> for group in cont.PartitionReduced(24):
+...   print '=' * 35
+...   for x in group:
+...     print x, cont.Expand(*x)
+...
+===================================
+(6, -1, 2) ([], [1, 2, 1, 1])
+(24, -3, 5) ([], [2, 1, 1, 1])
+(24, -3, 3) ([], [1, 1, 1, 2])
+(24, -2, 5) ([], [1, 1, 2, 1])
+===================================
+(24, -4, 1) ([], [1, 8])
+(6, -2, 4) ([], [8, 1])
+```

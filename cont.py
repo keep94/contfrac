@@ -136,6 +136,11 @@ def AllWith(r):
   return result
 
 
+def AllWithReduced(r):
+    m, nr = _ReduceScalar(r)
+    return [_Reduce(m, nr, a, b)  for _, a, b in AllWith(r)]
+
+
 def Partition(r):
   pivots = AllWith(r)
   cycles = []
@@ -155,3 +160,29 @@ def Partition(r):
     cycles.append(round)
   return cycles
 
+
+def PartitionReduced(r):
+    m, nr = _ReduceScalar(r)
+    result = []
+    for part in Partition(r):
+      result.append([_Reduce(m, nr, a, b)  for _, a, b in part])
+    return result
+
+
+def _ReduceScalar(n):
+  result = 1
+  idx = 2
+  prod = idx*idx
+  while prod <= n:
+    if n % prod == 0:
+      n /= prod
+      result *= idx
+    else:
+      idx += 1
+      prod = idx*idx
+  return result, n
+
+
+def _Reduce(m, nr, a, b):
+  d = fractions.gcd(fractions.gcd(a, b), m)
+  return m/d*m/d*nr, a/d, b/d
