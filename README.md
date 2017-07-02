@@ -132,7 +132,8 @@ numbers may not be in normalized form.
 
 ```
 >>> cont.AllWithReduced(24)
-[(6, -1, 2), (24, -2, 5), (24, -3, 3), (24, -3, 5), (24, -4, 1), (6, -2, 4)]```
+[(6, -1, 2), (24, -2, 5), (24, -3, 3), (24, -3, 5), (24, -4, 1), (6, -2, 4)]
+```
 
 ## cont.Characteristic(r, a, b)
 
