@@ -1,4 +1,3 @@
-import fractions
 import math
 
 class _Cont(object):
@@ -13,14 +12,14 @@ class _Cont(object):
 
   def Flip(self):
     q = self._r - self._a * self._a
-    self._b = q / self._b
+    self._b = q // self._b
     self._a = -self._a
 
   def Normalize(self):
     if self._b < 0:
-      result = (self._a + self._ir + 1) / self._b
+      result = (self._a + self._ir + 1) // self._b
     else:
-      result = (self._a + self._ir) / self._b
+      result = (self._a + self._ir) // self._b
     self._a -= result * self._b
     return result
 
@@ -81,13 +80,13 @@ def Expand(r, a, b):
 
 
 def _NormalizeUp(r, a, b):
-  q = b / fractions.gcd(r - a*a, b)
+  q = b // math.gcd(r - a*a, b)
   return r * q * q, q * a, q * b
 
 
 def _GCD(r, a, b):
-  q = (r - a*a) / b
-  d = fractions.gcd(fractions.gcd(a, b), q)
+  q = (r - a*a) // b
+  d = math.gcd(math.gcd(a, b), q)
   if d < 0:
     return -d
   return d
@@ -95,7 +94,7 @@ def _GCD(r, a, b):
 
 def _NormalizeDown(r, a, b):
   d = _GCD(r, a, b)
-  return r / d / d, a / d, b / d
+  return r // d // d, a // d, b // d
 
 
 def Normalize(r, a, b):
@@ -123,13 +122,13 @@ def AllWith(r):
   root = int(math.sqrt(r))
   if root * root == r:
     return result
-  for i in xrange(1, root+1):
+  for i in range(1, root+1):
     j = root - i + 1
     top = r - i*i
     while j*j < top:
       if top % j == 0 and _GCD(r, -i, j) == 1:
           result.append((r, -i, j))
-          result.append((r, -i, top / j))
+          result.append((r, -i, top // j))
       j += 1
     if j*j == top and _GCD(r, -i, j) == 1:
       result.append((r, -i, j))
@@ -175,7 +174,7 @@ def _ReduceScalar(n):
   prod = idx*idx
   while prod <= n:
     if n % prod == 0:
-      n /= prod
+      n //= prod
       result *= idx
     else:
       idx += 1
@@ -184,5 +183,5 @@ def _ReduceScalar(n):
 
 
 def _Reduce(m, nr, a, b):
-  d = fractions.gcd(fractions.gcd(a, b), m)
-  return m/d*m/d*nr, a/d, b/d
+  d = math.gcd(math.gcd(a, b), m)
+  return m//d*m//d*nr, a//d, b//d

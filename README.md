@@ -92,7 +92,7 @@ all even or all odd.
 
 # Getting started
 
-This python repo is for python 2.x. It won't work correctly in python 3.
+This python repo now works with python 3.
 
 1. Download the cont.py file
 2. Start python by typing python at the mac os X prompt.
@@ -175,9 +175,9 @@ square, returns the empty list.
 
 ```
 >>> for group in cont.Partition(41):
-...   print '=' * 35
+...   print('=' * 35)
 ...   for x in group:
-...     print x, cont.Expand(*x)
+...     print(x, cont.Expand(*x))
 ... 
 ===================================
 (41, -3, 4) ([], [1, 5, 1, 2, 2])
@@ -199,9 +199,9 @@ algebraic numbers may not be in normalized form.
 
 ```
 >>> for group in cont.PartitionReduced(24):
-...   print '=' * 35
+...   print('=' * 35)
 ...   for x in group:
-...     print x, cont.Expand(*x)
+...     print(x, cont.Expand(*x))
 ...
 ===================================
 (6, -1, 2) ([], [1, 2, 1, 1])
